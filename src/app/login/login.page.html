@@ -1,8 +1,5 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
     <ion-title>Log In</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -21,10 +18,22 @@
 
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="danger" expand="block">Sign In</ion-button>
-        <a [routerLink]="['/forgot-password']" class="small-text">Forgot Password?</a>
+        <ion-button type="submit" color="danger" expand="block">
+	        <ion-spinner *ngIf="loadingRequest"></ion-spinner>
+	        <span *ngIf="!loadingRequest">Sign In</span>
+        </ion-button>
       </ion-col>
     </ion-row>
+
+	  <ion-row>
+		  <ion-col>
+			  <ion-button [routerLink]="['/registration']" color="primary" expand="block">
+				  Register
+			  </ion-button>
+
+			  <a [routerLink]="['/forgot-password']" class="small-text">Forgot Password?</a>
+		  </ion-col>
+	  </ion-row>
 
   </form>
 </ion-content>

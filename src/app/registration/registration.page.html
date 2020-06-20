@@ -1,38 +1,48 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
     <ion-title>Register</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form>
+  <form (ngSubmit)="register($event)">
     <ion-item lines="full">
       <ion-label position="floating">Name</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input type="text" [value]="name" (ionChange)="setValue($event, 'name')" required></ion-input>
     </ion-item>
 
     <ion-item lines="full">
       <ion-label position="floating">Email</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input type="email" [value]="email" (ionChange)="setValue($event, 'email')" required></ion-input>
     </ion-item>
 
     <ion-item lines="full">
       <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" required></ion-input>
+      <ion-input type="password" [value]="password" (ionChange)="setValue($event, 'password')" required></ion-input>
     </ion-item>
 
     <ion-item lines="full">
       <ion-label position="floating">Password Confirmation</ion-label>
-      <ion-input type="password" required></ion-input>
+      <ion-input type="password" [value]="password_confirmation" (ionChange)="setValue($event, 'password_confirmation')" required></ion-input>
     </ion-item>
 
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="danger" expand="block">Sign Up</ion-button>
+	      <ion-button type="submit" color="danger" expand="block">
+		      <ion-spinner *ngIf="loadingRequest"></ion-spinner>
+		      <span *ngIf="!loadingRequest">Sign Up</span>
+	      </ion-button>
       </ion-col>
     </ion-row>
+
+	  <ion-row>
+		  <ion-col>
+			  <ion-button [routerLink]="['/login']" color="primary" expand="block">
+				  Login
+			  </ion-button>
+
+			  <a [routerLink]="['/forgot-password']" class="small-text">Forgot Password?</a>
+		  </ion-col>
+	  </ion-row>
   </form>
 </ion-content>

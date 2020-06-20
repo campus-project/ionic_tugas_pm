@@ -1,0 +1,66 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-title>
+			Dashboard
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="auth-form">
+	<ion-grid>
+		<div *ngIf="!user">
+			<div class="ion-padding custom-skeleton">
+				<ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+				<ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+				<ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+
+				<ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+				<ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+				<ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+			</div>
+		</div>
+
+		<ion-row *ngIf="user">
+			<ion-col align-self-center>
+				<ion-item lines="full">
+					<ion-label position="floating">Name</ion-label>
+					<ion-input type="text" [value]="user.name" readonly></ion-input>
+				</ion-item>
+
+				<ion-item lines="full">
+					<ion-label position="floating">Email</ion-label>
+					<ion-input type="text" [value]="user.email" readonly></ion-input>
+				</ion-item>
+
+				<ion-item lines="full">
+					<ion-label position="floating">Longitude</ion-label>
+					<ion-input type="text" [value]="longitude" readonly></ion-input>
+				</ion-item>
+
+				<ion-item lines="full">
+					<ion-label position="floating">Latitude</ion-label>
+					<ion-input type="text" [value]="latitude" readonly></ion-input>
+				</ion-item>
+
+				<ion-item lines="full">
+					<ion-label position="floating">Location Name</ion-label>
+					<ion-input type="text" [value]="locationName" readonly></ion-input>
+				</ion-item>
+
+				<ion-item lines="full">
+					<ion-label position="floating">Jarak Antara Kampus UEU Citra Raya</ion-label>
+					<ion-input type="text" [value]="distanceWithUeu" readonly></ion-input>
+				</ion-item>
+			</ion-col>
+		</ion-row>
+
+		<ion-row>
+			<ion-col align-self-center>
+				<ion-button type="button" expand="block" color="danger" (click)="logout($event)">
+					<ion-spinner *ngIf="loadingRequest"></ion-spinner>
+					<span *ngIf="!loadingRequest">Logout</span>
+				</ion-button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>
